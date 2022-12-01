@@ -20,6 +20,13 @@ model Example {
   updatedAt DateTime @updatedAt
 }
 
+model Listing {
+  id        String   @id @default(cuid())
+  geohash   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 // Necessary for Next auth
 model Account {
   id                String  @id @default(cuid())
