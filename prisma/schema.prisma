@@ -22,7 +22,12 @@ model Example {
 
 model Listing {
   id        String   @id @default(cuid())
+  name      String
+  details   String
+  address   String
   geohash   String
+  latitude  Float
+  longitude Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

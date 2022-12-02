@@ -24,75 +24,52 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-b from-[#ffffff] to-[#c2c2c2]">
-        <header className="bg-slate-800 py-6">
-          <div className="mx-auto flex max-w-5xl space-x-16">
-            <div>
-              <h1 className="text-4xl text-white">Local businesses near you</h1>
-            </div>
-            <div className="grow">
-              <div className="flex">
-                <input
-                  type="text"
-                  placeholder="restaurants, clinics, insurance"
-                  className="w-full rounded-l-md border p-2"
-                />
-                <button className="rounded-r-md bg-slate-600 px-4 text-white">
-                  Go
-                </button>
-              </div>
-            </div>
-          </div>
-        </header>
-        <main className="mx-auto mt-20 max-w-5xl">
-          <ul className="grid grid-cols-4 gap-10">
-            <li className="rounded-md border bg-white p-3">
-              <h3 className="text-xl">People store</h3>
-              <p className="text-slate-600">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor.
-              </p>
-            </li>
-            <li>
-              <h3 className="text-xl">Eve&apos;s clinic</h3>
-              <p className="text-slate-600">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor.
-              </p>
-            </li>
-            <li>
-              <h3 className="text-xl">Cocina sabor</h3>
-              <p className="text-slate-600">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor.
-              </p>
-            </li>
-            <li>
-              <h3 className="text-xl">Dibary</h3>
-              <p className="text-slate-600">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor.
-              </p>
-            </li>
-            <li>
-              <h3 className="text-xl">Medical Plaza</h3>
-              <p className="text-slate-600">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor.
-              </p>
-            </li>
-            <li>
-              <h3 className="text-xl">Mikado clothing center</h3>
-              <p className="text-slate-600">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor.
-              </p>
-            </li>
-          </ul>
-        </main>
-      </div>
-    </>
+    <div>
+      <ul className="grid grid-cols-3 gap-10">
+        <li className="rounded-md border bg-white p-3">
+          <h3 className="text-xl">People store</h3>
+          <p className="text-slate-600">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor.
+          </p>
+        </li>
+        <li>
+          <h3 className="text-xl">Eve&apos;s clinic</h3>
+          <p className="text-slate-600">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor.
+          </p>
+        </li>
+        <li>
+          <h3 className="text-xl">Cocina sabor</h3>
+          <p className="text-slate-600">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor.
+          </p>
+        </li>
+        <li>
+          <h3 className="text-xl">Dibary</h3>
+          <p className="text-slate-600">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor.
+          </p>
+        </li>
+        <li>
+          <h3 className="text-xl">Medical Plaza</h3>
+          <p className="text-slate-600">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor.
+          </p>
+        </li>
+        <li>
+          <h3 className="text-xl">Mikado clothing center</h3>
+          <p className="text-slate-600">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor.
+          </p>
+        </li>
+      </ul>
+    </div>
   );
 };
 
