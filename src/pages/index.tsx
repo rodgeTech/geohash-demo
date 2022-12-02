@@ -9,6 +9,8 @@ const Home: NextPage = () => {
 
   const results = trpc.search.nearBy.useQuery(coords!, { enabled: !!coords });
 
+  const { data: listings, isLoading } = trpc.listings.getAll.useQuery();
+
   useEffect(() => {
     if (navigator?.geolocation) {
       navigator.geolocation.getCurrentPosition((location) => {
@@ -25,50 +27,17 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <ul className="grid grid-cols-3 gap-10">
-        <li className="rounded-md border bg-white p-3">
-          <h3 className="text-xl">People store</h3>
-          <p className="text-slate-600">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
-          </p>
-        </li>
-        <li>
-          <h3 className="text-xl">Eve&apos;s clinic</h3>
-          <p className="text-slate-600">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
-          </p>
-        </li>
-        <li>
-          <h3 className="text-xl">Cocina sabor</h3>
-          <p className="text-slate-600">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
-          </p>
-        </li>
-        <li>
-          <h3 className="text-xl">Dibary</h3>
-          <p className="text-slate-600">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
-          </p>
-        </li>
-        <li>
-          <h3 className="text-xl">Medical Plaza</h3>
-          <p className="text-slate-600">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
-          </p>
-        </li>
-        <li>
-          <h3 className="text-xl">Mikado clothing center</h3>
-          <p className="text-slate-600">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor.
-          </p>
-        </li>
-      </ul>
+      {listings && (
+        <ul className="grid grid-cols-3 gap-10">
+          {listings.map((listing) => (
+            <li className="rounded-md border bg-white p-3" key={listing.id}>
+              <h3 className="text-xl">{listing.name}</h3>
+              <p className="mb-2 text-sm">{listing.address}</p>
+              <p className="text-slate-600">{listing.details}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -23,7 +23,7 @@ model Example {
 model Listing {
   id        String   @id @default(cuid())
   name      String
-  details   String
+  details   String?
   address   String
   geohash   String
   latitude  Float
