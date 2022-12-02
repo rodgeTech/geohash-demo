@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ffffff] to-[#c2c2c2]">
+    <div className="min-h-screen bg-gradient-to-b from-[#ffffff] to-[#c2c2c2] pb-16">
       <header className="bg-slate-800 py-8">
         <div className="mx-auto flex max-w-6xl items-center space-x-16">
           <div>
