@@ -18,7 +18,7 @@ export default function NewListing() {
   };
 
   return (
-    <div>
+    <div className="mx-auto my-40 max-w-4xl">
       <h2 className="mb-4 text-2xl">Add your business</h2>
       {mutation.isError && <p className="text-red-500">Failed to save</p>}
 

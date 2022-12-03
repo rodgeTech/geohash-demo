@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 
 // Define the type of the location as an array of two numbers.
-type Location = { latitude: number; longitude: number };
+export type Coords = { latitude: number; longitude: number };
 
 const key = "coords";
 
 // Define the type of the key and defaultValue arguments as strings.
 export const useCurrentLocation = () => {
-  const [location, setLocation] = useState<Location>();
+  const [location, setLocation] = useState<Coords>();
   const [loadingLocation, setLoadingLocation] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem(key)) {
-      const savedLocation: Location = JSON.parse(localStorage.getItem(key)!);
+      const savedLocation: Coords = JSON.parse(localStorage.getItem(key)!);
       setLocation({
         latitude: savedLocation.latitude,
         longitude: savedLocation.longitude,

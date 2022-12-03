@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 
 import "../styles/globals.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 import Layout from "../components/Layout";
 
 const MyApp: AppType<{ session: Session | null }> = ({

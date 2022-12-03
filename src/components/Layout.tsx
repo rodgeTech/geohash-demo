@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ffffff] to-[#c2c2c2] pb-16">
-      <header className="bg-slate-800 py-8">
-        <div className="mx-auto flex max-w-6xl items-center space-x-16">
+    <div className="min-h-screen bg-gradient-to-b from-[#ffffff] to-[#e7e7e7]">
+      <header className="fixed top-0 z-50 h-20 w-full bg-slate-800 ">
+        <div className="mx-auto flex h-full max-w-6xl items-center space-x-16 ">
           <div>
             <Link href="/">
               <h1 className="text-2xl text-white">Local businesses near you</h1>
@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="mx-auto mt-20 max-w-5xl">{children}</main>
+      <main className="">{children}</main>
     </div>
   );
 }

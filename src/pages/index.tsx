@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Map from "../components/Map";
 import { useCurrentLocation } from "../hooks/useCurrenLocation";
 
 import { trpc } from "../utils/trpc";
@@ -13,19 +14,30 @@ const Home: NextPage = () => {
   const { data: listings } = trpc.listings.getAll.useQuery();
 
   return (
-    <div>
+    <div className="">
       {nearByIsLoading && <p>Loading nearby businesses...</p>}
 
       {nearByListings && (
-        <ul className="grid grid-cols-3 gap-10">
-          {nearByListings.map((listing) => (
-            <li className="rounded-md border bg-white p-3" key={listing.id}>
-              <h3 className="text-xl">{listing.name}</h3>
-              <p className="mb-2 text-sm">{listing.address}</p>
-              <p className="text-slate-600">{listing.details}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="flex ">
+          <div className="mt-32 flex flex-1  overflow-y-scroll">
+            <ul className="grid grid-cols-3 gap-10 p-5">
+              {nearByListings.map((listing) => (
+                <li className="rounded-md border bg-white p-3" key={listing.id}>
+                  <h3 className="text-xl">{listing.name}</h3>
+                  <p className="mb-2 text-sm">{listing.address}</p>
+                  <p className="text-slate-600">{listing.details}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {location && (
+            <div className="w-2/6 ">
+              <div className="fixed right-0 top-20 h-full w-2/6 bg-white">
+                <Map coords={location} listings={nearByListings} />
+              </div>
+            </div>
+          )}
+        </div>
       )}
 
       {!nearByIsLoading && !nearByListings && listings && (
