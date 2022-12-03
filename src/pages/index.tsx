@@ -1,37 +1,38 @@
 import { type NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useCurrentLocation } from "../hooks/useCurrenLocation";
 
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const [coords, setCoords] = useState<{ lat: number; long: number }>();
+  const { location } = useCurrentLocation();
 
-  const results = trpc.search.nearBy.useQuery(coords!, { enabled: !!coords });
+  const { data: nearByListings, isLoading: nearByIsLoading } =
+    trpc.search.nearBy.useQuery(location!, { enabled: !!location });
 
-  const { data: listings, isLoading } = trpc.listings.getAll.useQuery();
-
-  useEffect(() => {
-    if (navigator?.geolocation) {
-      navigator.geolocation.getCurrentPosition((location) => {
-        if (location) {
-          console.log(location.coords);
-          setCoords({
-            lat: location.coords.latitude,
-            long: location.coords.longitude,
-          });
-        }
-      });
-    }
-  }, []);
+  const { data: listings } = trpc.listings.getAll.useQuery();
 
   return (
     <div>
-      {listings && (
+      {nearByIsLoading && <p>Loading nearby businesses...</p>}
+
+      {nearByListings && (
+        <ul className="grid grid-cols-3 gap-10">
+          {nearByListings.map((listing) => (
+            <li className="rounded-md border bg-white p-3" key={listing.id}>
+              <h3 className="text-xl">{listing.name}</h3>
+              <p className="mb-2 text-sm">{listing.address}</p>
+              <p className="text-slate-600">{listing.details}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {!nearByIsLoading && !nearByListings && listings && (
         <ul className="grid grid-cols-3 gap-10">
           {listings.map((listing) => (
             <li className="rounded-md border bg-white p-3" key={listing.id}>
-              <h3 className="text-xl">{listing.name}</h3>
+              <h3 className="text-xl text-blue-500">{listing.name}</h3>
               <p className="mb-2 text-sm">{listing.address}</p>
               <p className="text-slate-600">{listing.details}</p>
             </li>

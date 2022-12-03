@@ -2,19 +2,28 @@ import { z } from "zod";
 import ngeohash from "ngeohash";
 
 import { router, publicProcedure } from "../trpc";
+import type { Listing } from "@prisma/client";
 
 export const searchRouter = router({
   nearBy: publicProcedure
-    .input(z.object({ lat: z.number(), long: z.number() }))
-    .query(({ input }) => {
-      console.log("hi", input);
+    .input(z.object({ latitude: z.number(), longitude: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const currentGeohash = ngeohash.encode(
+        input.latitude,
+        input.longitude,
+        5
+      );
 
-      const geohash = ngeohash.encode(input.lat, input.long, 5);
+      console.log("currentGeohash", currentGeohash);
 
-      console.log("geohash", geohash);
+      // const precision = 5 * 1609.34; // 5 miles
 
-      return {
-        greeting: `Hello from search`,
-      };
+      const results: Listing[] = await ctx.prisma.$queryRaw`
+        SELECT *
+        FROM "Listing"
+        WHERE geohash = ${currentGeohash};
+      `;
+
+      return results;
     }),
 });
