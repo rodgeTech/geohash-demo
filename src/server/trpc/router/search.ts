@@ -14,14 +14,19 @@ export const searchRouter = router({
         5
       );
 
-      console.log("currentGeohash", currentGeohash);
-
-      // const precision = 5 * 1609.34; // 5 miles
-
       const results: Listing[] = await ctx.prisma.$queryRaw`
-        SELECT *
+        SELECT *,
+          6371 * 2 *
+          ASIN(
+            SQRT(
+              POWER(SIN((latitude - ${input.latitude}) * PI() / 180 / 2), 2) +
+              COS(latitude * PI() / 180) * COS(${input.latitude} * PI() / 180) *
+              POWER(SIN((longitude - ${input.longitude}) * PI() / 180 / 2), 2)
+            )
+          ) AS distance
         FROM "Listing"
-        WHERE geohash = ${currentGeohash};
+        WHERE geohash = ${currentGeohash}
+        ORDER BY distance;
       `;
 
       return results;

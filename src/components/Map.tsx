@@ -15,7 +15,7 @@ export default function Map({ coords, listings }: Props) {
     () =>
       listings.map((listing, index) => (
         <Marker
-          key={`marker-${listing}`}
+          key={`marker-${index}`}
           longitude={listing.longitude}
           latitude={listing.latitude}
           color="#ef4444"
