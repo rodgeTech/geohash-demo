@@ -30,7 +30,7 @@ export default function Map({ coords, listings }: Props) {
           style={{ cursor: "pointer" }}
         />
       )),
-    []
+    [listings]
   );
 
   return (
