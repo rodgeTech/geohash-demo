@@ -1,6 +1,7 @@
 import type { Listing } from "@prisma/client";
 import { useMemo, useState } from "react";
 import ReactMap, { Marker, Popup } from "react-map-gl";
+import { env } from "../env/client.mjs";
 import type { Coords } from "../hooks/useCurrenLocation";
 
 type Props = {
@@ -41,7 +42,7 @@ export default function Map({ coords, listings }: Props) {
       }}
       style={{ width: "auto", height: "100%" }}
       mapStyle="mapbox://styles/mapbox/light-v11"
-      mapboxAccessToken="pk.eyJ1Ijoicm9kcmlnbHUiLCJhIjoiY2prNXozbGQ4MGtqeDNwcDA5bnFwcGVobSJ9.0EBzSPf4YCLArgTpqhYDog"
+      mapboxAccessToken={env.NEXT_PUBLIC_MAP_ACCESS_TOKEN}
     >
       {pins}
 
