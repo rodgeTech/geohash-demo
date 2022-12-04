@@ -6,7 +6,10 @@ type Props = {
 };
 export default function ListingPreview({ listing }: Props) {
   return (
-    <li className="rounded-md  bg-white p-3" key={listing.id}>
+    <li
+      className="rounded-md border border-slate-600  bg-white p-3"
+      key={listing.id}
+    >
       <h3 className="text-xl font-bold tracking-tight text-slate-800">
         {listing.name}
       </h3>

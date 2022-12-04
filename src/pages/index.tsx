@@ -20,8 +20,8 @@ const Home: NextPage = () => {
 
       {nearByListings && (
         <div className="flex ">
-          <div className="mt-32 flex flex-1  overflow-y-scroll">
-            <ul className="grid grid-cols-3 gap-8 p-5">
+          <div className="mt-32 flex flex-1">
+            <ul className="grid grid-cols-3 gap-8 py-4 px-8">
               {nearByListings.map((listing) => (
                 <ListingPreview listing={listing} key={listing.id} />
               ))}
