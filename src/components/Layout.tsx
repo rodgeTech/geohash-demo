@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <div className="flex items-center space-x-3">
             <h3 className=" text-white">Looking for this?</h3>
             <Link
-              href="listings/new"
+              href="/listings/new"
               className="rounded-md border border-slate-800 bg-white py-2 px-6 text-slate-800"
             >
               Add your business

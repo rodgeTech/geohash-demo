@@ -4,17 +4,20 @@ import { useForm } from "react-hook-form";
 export type FormValues = {
   name: string;
   address: string;
-  details: string;
+  details: string | null;
   latitude: string;
   longitude: string;
 };
 
 type Props = {
   onSubmit: (data: FormValues) => void;
+  initialValues?: FormValues;
 };
 
-const Form = ({ onSubmit }: Props) => {
-  const { register, handleSubmit } = useForm<FormValues>();
+const Form = ({ onSubmit, initialValues }: Props) => {
+  const { register, handleSubmit } = useForm<FormValues>({
+    defaultValues: initialValues,
+  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -95,10 +98,10 @@ const Form = ({ onSubmit }: Props) => {
         />
       </div>
       <button
-        className="focus:shadow-outline rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"
+        className="focus:shadow-outline rounded bg-blue-500 py-2 px-8 font-bold text-white hover:bg-blue-700 focus:outline-none"
         type="submit"
       >
-        Submit listing
+        Save
       </button>
     </form>
   );
