@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { ReactNode } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Open_Sans } from "@next/font/google";
+
+const openSans = Open_Sans({ subsets: ["latin"] });
 
 export default function Layout({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -16,7 +18,9 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, [initialSearchText]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#ffffff] to-[#e7e7e7]">
+    <div
+      className={`min-h-screen bg-gradient-to-b from-[#ffffff] to-[#e7e7e7] ${openSans.className}`}
+    >
       <header className="fixed top-0 z-50 h-20 w-full bg-slate-800 ">
         <div className="mx-auto flex h-full max-w-6xl items-center space-x-16 ">
           <div>

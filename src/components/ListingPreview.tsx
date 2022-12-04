@@ -8,7 +8,7 @@ export default function ListingPreview({ listing }: Props) {
   return (
     <li className="rounded-md border bg-white p-3" key={listing.id}>
       <div>
-        <h3 className="text-xl font-bold leading-6 tracking-tight text-slate-800">
+        <h3 className="text-xl font-semibold leading-6 tracking-tight text-slate-800">
           {listing.name}
         </h3>
         <p className="my-2 text-sm">{listing.address}</p>
