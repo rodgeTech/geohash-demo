@@ -23,19 +23,22 @@ export const searchRouter = router({
       const searchQuery = input.search ? `%${input.search}%` : "%%";
 
       const results: Listing[] = await ctx.prisma.$queryRaw`
-        SELECT *,
-          6371 * 2 *
-          ASIN(
+        SELECT 
+          *,
+          6371 * 2 * ASIN(
             SQRT(
               POWER(SIN((latitude - ${input.latitude}) * PI() / 180 / 2), 2) +
               COS(latitude * PI() / 180) * COS(${input.latitude} * PI() / 180) *
               POWER(SIN((longitude - ${input.longitude}) * PI() / 180 / 2), 2)
             )
           ) AS distance
-        FROM "Listing"
-        WHERE geohash = ${currentGeohash}
-        AND name LIKE  ${searchQuery}
-        ORDER BY distance;
+        FROM 
+          "Listing"
+        WHERE 
+          geohash = ${currentGeohash}
+          AND LOWER(name) LIKE  LOWER(${searchQuery})
+        ORDER BY 
+          distance;
       `;
 
       return results;

@@ -1,11 +1,19 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { ReactNode } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const router = useRouter();
+
   const [searchText, setSearchText] = useState("");
+
+  const initialSearchText = router.query.text as string;
+
+  useEffect(() => {
+    setSearchText(initialSearchText);
+  }, [initialSearchText]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#ffffff] to-[#e7e7e7]">
@@ -28,6 +36,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             >
               <div className="flex">
                 <input
+                  value={searchText}
                   name="search"
                   type="text"
                   placeholder="restaurants, clinics, insurance, barbers"

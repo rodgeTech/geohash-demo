@@ -10,8 +10,6 @@ const Search: NextPage = () => {
   const { query } = useRouter();
   const { location } = useCurrentLocation();
 
-  console.log(query.text);
-
   const { data: nearByListings, isLoading: nearByIsLoading } =
     trpc.search.nearBy.useQuery(
       { ...location!, search: query.text as string },
