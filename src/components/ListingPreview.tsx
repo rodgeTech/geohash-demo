@@ -6,14 +6,14 @@ type Props = {
 };
 export default function ListingPreview({ listing }: Props) {
   return (
-    <li
-      className="rounded-md border border-slate-600  bg-white p-3"
-      key={listing.id}
-    >
-      <h3 className="text-xl font-bold tracking-tight text-slate-800">
-        {listing.name}
-      </h3>
-      <p className="mb-2 text-sm">{listing.address}</p>
+    <li className="rounded-md border bg-white p-3" key={listing.id}>
+      <div>
+        <h3 className="text-xl font-semibold leading-6 tracking-tight text-slate-800">
+          {listing.name}
+        </h3>
+        <p className="my-2 text-sm">{listing.address}</p>
+      </div>
+
       <p className="text-slate-600">{listing.details}</p>
       <Link href={`/listings/${listing.id}`} className="text-sm">
         Edit

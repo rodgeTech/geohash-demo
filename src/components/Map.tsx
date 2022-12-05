@@ -6,7 +6,7 @@ import type { Coords } from "../hooks/useCurrenLocation";
 
 type Props = {
   coords: Coords;
-  listings: Listing[];
+  listings?: Listing[];
 };
 
 export default function Map({ coords, listings }: Props) {
@@ -14,7 +14,7 @@ export default function Map({ coords, listings }: Props) {
 
   const pins = useMemo(
     () =>
-      listings.map((listing, index) => (
+      listings?.map((listing, index) => (
         <Marker
           key={`marker-${index}`}
           longitude={listing.longitude}
@@ -30,7 +30,7 @@ export default function Map({ coords, listings }: Props) {
           style={{ cursor: "pointer" }}
         />
       )),
-    []
+    [listings]
   );
 
   return (
